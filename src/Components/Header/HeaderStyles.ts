@@ -167,6 +167,7 @@ export const StyledIcon = styled(BsPersonFillAdd)`
 
 export const StyledButton = styled(Button)`
   /* Adicione seus estilos personalizados aqui */
+
 `;
 // No HeaderStyles.ts
 
@@ -220,7 +221,7 @@ export const LinkDiscord = styled.div`
   cursor: pointer;
   color: #ffff;
   margin-left: -10rem;
-  margin-top: 1.2rem;
+  margin-top: -.6rem;
   display: flex;
   align-items: center;
   justify-content: center;

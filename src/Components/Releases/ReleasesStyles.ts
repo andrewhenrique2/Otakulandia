@@ -73,6 +73,7 @@ export const ReleasesContainer = styled.div`
 
 
 
+
 // LAST RELEASES VIDEOS
 export const LastReleasesVideos = styled.div`
   display: grid;
@@ -83,7 +84,7 @@ export const LastReleasesVideos = styled.div`
 export const ReleaseVideo = styled.div`
 
     margin-top: 1.9rem;
-    border: 3px solid #171518;
+    border: 3px solid #151714;
     align-items: center;
     text-align: center;
     justify-content: center;

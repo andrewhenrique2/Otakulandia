@@ -1,12 +1,15 @@
+// main.tsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Home from '../src/Pages/Home/home.tsx' // import da Page Home
 import GlobalStyles from './GlobalStyles'; // Importe os estilos globais
+import { BrowserRouter } from 'react-router-dom'; // Importe BrowserRouter
+import { AppRoutes } from './routes/AppRoutes';
 
-ReactDOM.render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <GlobalStyles /> {/* Use os estilos globais */}
-    <Home /> {/* Page HOME */}
-  </React.StrictMode>,
-  document.getElementById('root')
+    <GlobalStyles /> {/* Estilos globais */}
+    <BrowserRouter> {/*  BrowserRouter */}
+      <AppRoutes /> {/* rotas */}
+    </BrowserRouter>
+  </React.StrictMode>
 );

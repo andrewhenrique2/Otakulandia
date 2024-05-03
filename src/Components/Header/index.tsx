@@ -9,26 +9,34 @@ import { FaCaretDown } from "react-icons/fa";
 import { HiOutlineMenu } from "react-icons/hi";
 import { RiUser3Line } from "react-icons/ri";
 import { IoMdSearch } from "react-icons/io";
-import { IoLogoDiscord } from "react-icons/io5";
+import { FaHome } from "react-icons/fa";
 
-// IMPORT DO SCROLL STYLE 
+// IMPORT Strategic
+import { Link } from "react-router-dom";
+import GlobalStyles from '../../GlobalStyles';
+
 
 const Header = () => {
-  const handleClick = () => {
-    console.log('Botão clicado!');
-  };
 
   return (
     <ScrollableContainer>
-
+      <GlobalStyles/>
     <HeaderContainer>
       <Container>
-        <LogoImg src={Logo} alt="Logo Otakulandia" />
+      <Link to="/" className='Logo/'>
+      <LogoImg src={Logo} alt="Logo Otakulandia" />
+
+            </Link>
+
+
+            <Link to="/" className='Logo/'>
 
         <LinkDiscord>
-        <IoLogoDiscord className='IconDiscord' />
+        <FaHome className='IconDiscord' />
+
         </LinkDiscord>
-        
+        </Link>
+
 
 
        <AnimeFilmsTab>
@@ -90,14 +98,26 @@ const Header = () => {
           </Search>
 
           <Account>
+
+          <Link to="/login" className='loginLink'>
             <HeaderAccount>
               <RiUser3Line className='IconLoginAccount'/>
               <p>Entrar</p>
             </HeaderAccount>
-            <StyledButton onClick={handleClick}>
-              <StyledIcon />
-              CADASTRE-SE
+            </Link>
+
+
+
+     
+
+                      {/* BOTAO DO REGISTER */}
+            <Link to="/register" className='registerLink'>
+            <StyledButton >
+                <StyledIcon />
+                CADASTRE-SE
             </StyledButton>
+            </Link>
+
           </Account>
         </UserNavegation>
       </Container>

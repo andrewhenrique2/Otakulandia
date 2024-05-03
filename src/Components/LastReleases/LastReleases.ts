@@ -111,15 +111,21 @@ export const LogoImg = styled.img`
 export const TitleFilms = styled.div`
 
 display: flex;
+align-items: center;
+text-align: center;
+justify-content: start;
 gap: 2.3rem;
 margin: 8rem 0 0 2rem;
 
 p {
-  font-size: 2.8rem;
-  color: #ffffffff;
+  font-size: 3.2rem;
+  font-family: 'Helvetica Neue';
+  color: #ebae4c;
+;
 }
 
 img {
+  padding-bottom: 2rem;
   width: 60px;
   height: 60px;
 }

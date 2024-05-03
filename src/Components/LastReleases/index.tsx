@@ -37,7 +37,7 @@ const LastReleases = () => {
 
         <TitleFilms>
           <img className="film" src={iconfilm} alt="" />
-          <p>Filmes</p>
+          <p>Filmes adicionados</p>
         </TitleFilms>
         <Container>
       {/* Renderize o novo card de lançamento */}
