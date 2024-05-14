@@ -2,6 +2,7 @@ import styled, { keyframes } from 'styled-components';
 import { backgrounds } from '../../theme';
 
 export const ScrollableContainer = styled.div`
+
   /* Largura da barra de rolagem */
   scrollbar-width: thin; /* Para navegadores que suportam a propriedade scrollbar-width */
   &::-webkit-scrollbar {
@@ -82,20 +83,32 @@ export const LastReleasesVideos = styled.div`
 `;
 
 export const ReleaseVideo = styled.div`
+  margin-top: 1.9rem;
+  border: 3px solid #151714;
+  background-color: red;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 1.5);
+  padding: 1.5rem;
 
-    margin-top: 1.9rem;
-    border: 3px solid #151714;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    background-color: #100e0e;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 1.5); /* Adiciona uma sombra escura */
+  p {
+    font-size: 1.6rem;
+    color: white;
+    margin-bottom: 0.8rem;
+  }
 
-    h1 {
-        font-family: K2D;
-        font-size: 2.5rem;
-        color: #ffffff;
-    }
+  .title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .score {
+    color: orange;
+  }
+
+  .url {
+    color: dodgerblue;
+    text-decoration: underline;
+  }
 `;
 
 

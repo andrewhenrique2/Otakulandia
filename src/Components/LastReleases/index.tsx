@@ -4,7 +4,7 @@ import { LastReleasesContainer, Container, TitleLastAnimes, TitleFilms, Scrollab
 import ReleaseCard from './ReleaseCard'; // Importe o componente ReleaseCard do Releases
 import SoloLeveling from '../../assets/solo.jpg';
 import iconfilm from '../../assets/iconfilm.png'
-
+import { Link } from "react-router-dom";
 // IMG
 import iconfire from '../../assets/talvez1.png';
 
@@ -24,16 +24,21 @@ const LastReleases = () => {
     <ScrollableContainer>
 
     <LastReleasesContainer>
+      
         <TitleLastAnimes>
           <img className="fire" src={iconfire} alt="" />
           <p>Últimos adicionados</p>
         </TitleLastAnimes>
-      <Container>
+
+        <Link to="/watching" className='/'>
+        <Container>
       {/* Renderize o novo card de lançamento */}
       {additionalReleases.map((release, index) => (
         <ReleaseCard key={index} title={release.title} imgSrc={release.imgSrc} />
       ))}
       </Container>
+</Link>
+  
 
         <TitleFilms>
           <img className="film" src={iconfilm} alt="" />

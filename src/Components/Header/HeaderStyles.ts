@@ -79,6 +79,10 @@ export const Search = styled.div`
     cursor: pointer;
     color: #ffffff;
     font-size: 4.5rem;
+
+    &:hover {
+      color: #848484;
+    }
   }
 `;
 

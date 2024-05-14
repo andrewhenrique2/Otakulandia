@@ -33,7 +33,6 @@ const Header = () => {
 
         <LinkDiscord>
         <FaHome className='IconDiscord' />
-
         </LinkDiscord>
         </Link>
 
@@ -49,8 +48,8 @@ const Header = () => {
 
   <PopUpWindowList>
     <h2 className='titleListAnimes' > <img className='IconAnimeList' src={IconListAnime} alt="" />
-      LISTA DE ANIMES</h2>
-    <h3>Animes legendados e dublados</h3>
+      TIER LIST Animes</h2>
+    <h3>Lista animes por <br/> Tier-List</h3>
   </PopUpWindowList>
 
 
@@ -93,10 +92,12 @@ const Header = () => {
         </AnimeFilmsTab2>
         
         <UserNavegation>
+
+        <Link to="/search" className='searchlink'>
           <Search>
             <IoMdSearch className='SearchIcon' />
           </Search>
-
+          </Link>
           <Account>
 
           <Link to="/login" className='loginLink'>
