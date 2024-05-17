@@ -16,9 +16,11 @@
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^18.2.0",
     "react-icons": "^5.1.0",
+    "react-player": "^2.16.0",
     "react-router-dom": "^6.23.0",
     "react-scrollbars-custom": "^4.1.1",
-    "styled-components": "^6.1.8"
+    "styled-components": "^6.1.8",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

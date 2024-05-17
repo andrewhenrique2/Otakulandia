@@ -2,7 +2,6 @@ import styled, { keyframes } from 'styled-components';
 import { backgrounds } from '../../theme';
 
 export const ScrollableContainer = styled.div`
-
   /* Largura da barra de rolagem */
   scrollbar-width: thin; /* Para navegadores que suportam a propriedade scrollbar-width */
   &::-webkit-scrollbar {
@@ -61,7 +60,7 @@ export const LastReleases = styled.div`
 `;
 
 export const ReleasesContainer = styled.div`
- height: 100%;
+  height: 100%;
   background: 
     linear-gradient(rgba(36, 36, 36, 0.9), #100e0e), /* Aqui ajustamos a transparência para 0.9 */
     url(${backgrounds.kage}) center/cover no-repeat;
@@ -72,9 +71,6 @@ export const ReleasesContainer = styled.div`
   background-attachment: fixed;
 `;
 
-
-
-
 // LAST RELEASES VIDEOS
 export const LastReleasesVideos = styled.div`
   display: grid;
@@ -83,16 +79,48 @@ export const LastReleasesVideos = styled.div`
 `;
 
 export const ReleaseVideo = styled.div`
+  margin: 0;
   margin-top: 1.9rem;
   border: 3px solid #151714;
-  background-color: red;
+  background-color: #100e0e;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 1.5);
-  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .Number-ep {
+    padding: 1rem;
+    font-family: 'Helvetica Neue';
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin: 1rem auto;
+    border: 1px solid #282424;
+    background-color: #282424;
+    border-radius: 10px;
+    width: 50%;
+    gap: 1rem;
+    font-size: 1.5rem;
+    color: #ffffff;
+    span {
+      margin-bottom: .3rem;
+      font-size: 2rem;
+      font-family: K2D;
+      font-weight: bolder;
+      color: orange;
+    }
+  }
 
   p {
-    font-size: 1.6rem;
+    font-size: 2rem;
     color: white;
     margin-bottom: 0.8rem;
+  }
+  .image-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
   }
 
   .title {
@@ -111,36 +139,34 @@ export const ReleaseVideo = styled.div`
   }
 `;
 
-
-
 export const LogoImg = styled.img`
-    max-width: 100%;
-    height: 230px;
-    object-fit: cover;
+  max-width: 100%;
+  height: 230px;
+  object-fit: cover;
 
   /* Adicione outros estilos desejados aqui */
 `;
 
 export const NumberEp = styled.div`
-font-family: 'Helvetica Neue';
-align-items: center;
-text-align: center;
-justify-content: center;
-margin: 1rem auto;
-border: 1px solid #282424;
-background-color: #282424;
-border-radius: 10px;
-width: 50%;
-gap: 1rem;
-display: flex;
-font-size: 1.5rem;
-color: #ffffff;
+  font-family: 'Helvetica Neue';
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  margin: 1rem auto;
+  border: 1px solid #282424;
+  background-color: #282424;
+  border-radius: 10px;
+  width: 50%;
+  gap: 1rem;
+  display: flex;
+  font-size: 1.5rem;
+  color: #ffffff;
 
-.epi {
+  .epi {
     font-size: 2rem;
     margin-top: 16.5px;
     font-family: K2D;
     font-weight: bolder;
     color: orange;
-}
+  }
 `;

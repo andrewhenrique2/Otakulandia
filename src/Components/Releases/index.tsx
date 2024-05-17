@@ -1,29 +1,42 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { ReleasesContainer, LastReleases, LastReleasesVideos, ScrollableContainer, ReleaseVideo } from './ReleasesStyles';
 import fire from '../../assets/incendio.png';
-import fetchData from '../../services/api'; // Importe a função fetchData
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 interface Release {
+  id: string;
   title: string;
   episode: string;
+  episodeNumber: number;
   videoUrl: string;
-  imageUrl: string; // Altere para imageUrl
+  imageUrl: string;
 }
 
 const Release = () => {
   const [newRelease, setNewRelease] = useState<Release>({
+    id: '',
     title: '',
     episode: '',
+    episodeNumber: 0,
     videoUrl: '',
-    imageUrl: '' // Altere para imageUrl
+    imageUrl: ''
   });
   const [releases, setReleases] = useState<Release[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const storedReleases = localStorage.getItem('releases');
-    if (storedReleases) {
-      setReleases(JSON.parse(storedReleases));
-    }
+    const fetchReleases = async () => {
+      try {
+        const response = await axios.get('/api/animes');
+        console.log("Dados recebidos do servidor:", response.data);
+        setReleases(response.data);
+      } catch (error) {
+        console.error('Erro ao buscar os lançamentos:', error);
+      }
+    };
+
+    fetchReleases();
   }, []);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -36,17 +49,18 @@ const Release = () => {
 
   const addRelease = async (release: Release) => {
     try {
-      // Enviar apenas a URL da imagem para o backend
-      await fetchData('POST', '/animes', { ...release, imageUrl: release.imageUrl });
-      const updatedReleases = [...releases, release];
-      setReleases(updatedReleases);
-      localStorage.setItem('releases', JSON.stringify(updatedReleases));
+      const response = await axios.post('/api/animes', release);
+      const newReleaseWithId = { ...release, id: response.data.id };
+      setReleases(prevReleases => [...prevReleases, newReleaseWithId]);
       setNewRelease({
+        id: '',
         title: '',
         episode: '',
+        episodeNumber: 0,
         videoUrl: '',
-        imageUrl: '' // Limpar imageUrl após o envio
+        imageUrl: ''
       });
+      navigate(`/watching/${response.data.id}`); // Navegar para a página do anime recém-criado
     } catch (error) {
       console.error('Erro ao adicionar lançamento:', error);
     }
@@ -67,19 +81,24 @@ const Release = () => {
         <LastReleasesVideos>
           {releases.map((release, index) => (
             <ReleaseVideo key={index}>
-              <p>Título: {release.title}</p>
-              <p>Episódio: {release.episode}</p>
-              <iframe src={release.videoUrl} width="640" height="360" frameborder="0" allowfullscreen></iframe>
+              <Link to={`/watching/${release.id}`}>
+                <div className="image-container">
+                  <img className='imgCardAnime' src={release.imageUrl} alt="Anime" />
+                </div>
+              </Link>
+              <p>{release.title}</p>
+              <p className='Number-ep'>EPISÓDIO <span>{release.episodeNumber}</span></p>
             </ReleaseVideo>
           ))}
         </LastReleasesVideos>
       </ReleasesContainer>
 
       <form onSubmit={handleFormSubmit}>
-        <input type="text" name="title" placeholder="Título do Anime" value={newRelease.title} onChange={handleInputChange} />
-        <input type="text" name="episode" placeholder="Episódio" value={newRelease.episode} onChange={handleInputChange} />
-        <input type="text" name="videoUrl" placeholder="URL do Vídeo" value={newRelease.videoUrl} onChange={handleInputChange} />
-        <input type="text" name="imageUrl" placeholder="URL da Imagem" value={newRelease.imageUrl} onChange={handleInputChange} /> {/* Campo para inserir a URL da imagem */}
+        <input type="text" name="title" placeholder="Título do Anime" value={newRelease.title} onChange={handleInputChange} required />
+        <input type="text" name="episode" placeholder="Episódio" value={newRelease.episode} onChange={handleInputChange} required />
+        <input type="number" name="episodeNumber" placeholder="Número do Episódio" value={newRelease.episodeNumber.toString()} onChange={handleInputChange} required />
+        <input type="text" name="videoUrl" placeholder="URL do Vídeo" value={newRelease.videoUrl} onChange={handleInputChange} required />
+        <input type="text" name="imageUrl" placeholder="URL da Imagem" value={newRelease.imageUrl} onChange={handleInputChange} required />
         <button type="submit">Adicionar</button>
       </form>
     </ScrollableContainer>
