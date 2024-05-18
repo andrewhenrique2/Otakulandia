@@ -1,4 +1,3 @@
-// src/Pages/SignUp/index.tsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
@@ -7,6 +6,7 @@ import { Container, FormWrapper, Input, Icon, InputField } from "./styles";
 import { FaUser } from "react-icons/fa";
 import coroa from '../../assets/coroa.png';
 import { toast } from 'react-toastify';
+import Header from '../../Components/Header'; // Corrigido o caminho do Header
 
 const SignUp = () => {
   const [focusedInput, setFocusedInput] = useState<string | null>(null);
@@ -26,7 +26,7 @@ const SignUp = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
-      alert("As senhas não coincidem");
+      toast.error("As senhas não coincidem");
       return;
     }
     try {
@@ -48,6 +48,7 @@ const SignUp = () => {
   return (
     <>
       <GlobalStyles />
+      <Header />
       <Container>
         <form onSubmit={handleSubmit}>
           <FormWrapper>

@@ -1,3 +1,4 @@
+// src/Pages/SignIn/styles.ts
 import styled, { keyframes } from "styled-components";
 import backgroundregister from '../../assets/solo3.jpg';
 
@@ -49,7 +50,8 @@ export const Container = styled.div`
   background-position: right top;
 `;
 
-export const Form = styled.div`
+// Altere o nome do componente de "Form" para "FormWrapper" para evitar conflitos com o elemento form nativo
+export const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -152,4 +154,3 @@ export const InputField = styled.input`
     border-color: #fb8304; /* Cor da borda ao focar */
   }
 `;
-
