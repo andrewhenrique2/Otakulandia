@@ -1,130 +1,131 @@
-import React from 'react';
-import { HeaderContainer, Container, LogoImg, StyledButton, StyledIcon, HeaderAccount, Account, UserNavegation, Search, AnimeFilmsTab, PopUpWindow, PopUpWindowList, AnimeFilmsTab2 , LinkDiscord, ScrollableContainer  } from './HeaderStyles'; // Importe o IconWrapper
+// src/Components/Header/index.tsx
+import React, { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
+import { Link } from 'react-router-dom';
+import {
+  HeaderContainer,
+  Container,
+  LogoImg,
+  StyledButton,
+  StyledIcon,
+  HeaderAccount,
+  Account,
+  UserNavegation,
+  Search,
+  AnimeFilmsTab,
+  PopUpWindow,
+  PopUpWindowList,
+  AnimeFilmsTab2,
+  LinkDiscord,
+  ScrollableContainer,
+} from './HeaderStyles';
 import Logo from '../../assets/Otakulandia.png';
 import IconListFilms from '../../assets/buttonListFilms.png';
 import IconListAnime from '../../assets/buttonListAnimes.png';
-
-// React ICONS
-import { FaCaretDown } from "react-icons/fa";
-import { HiOutlineMenu } from "react-icons/hi";
-import { RiUser3Line } from "react-icons/ri";
-import { IoMdSearch } from "react-icons/io";
-import { FaHome } from "react-icons/fa";
-
-// IMPORT Strategic
-import { Link } from "react-router-dom";
+import { FaCaretDown, FaHome } from 'react-icons/fa';
+import { HiOutlineMenu } from 'react-icons/hi';
+import { RiUser3Line } from 'react-icons/ri';
+import { IoMdSearch } from 'react-icons/io';
 import GlobalStyles from '../../GlobalStyles';
 
-
 const Header = () => {
+  const { user, signOut } = useContext(AuthContext);
 
   return (
     <ScrollableContainer>
-      <GlobalStyles/>
-    <HeaderContainer>
-      <Container>
-      <Link to="/" className='Logo/'>
-      <LogoImg src={Logo} alt="Logo Otakulandia" />
-
-            </Link>
-
-
-            <Link to="/" className='Logo/'>
-
-        <LinkDiscord>
-        <FaHome className='IconDiscord' />
-        </LinkDiscord>
-        </Link>
-
-
-
-       <AnimeFilmsTab>
-         Menu <HiOutlineMenu className='menuIcon' /> 
-
-
-<PopUpWindow className="PopUpWindow">
-
-                {/* ANIME LIST */}
-
-  <PopUpWindowList>
-    <h2 className='titleListAnimes' > <img className='IconAnimeList' src={IconListAnime} alt="" />
-      TIER LIST Animes</h2>
-    <h3>Lista animes por <br/> Tier-List</h3>
-  </PopUpWindowList>
-
-
-                  {/* FILMES LIST */}
-
-  <PopUpWindowList>
-    <h2 className='titleListFilms' > <img className='IconFilmList' src={IconListFilms} alt="" /> LISTA DE FILMES</h2>
-    <h3 className='h3Films' > Filmes legendados e dublados</h3>
-  </PopUpWindowList>
-
-
-
-
-</PopUpWindow>
-      
-       </AnimeFilmsTab>
-
-        
-        <AnimeFilmsTab2>
-          Animes/Filmes <FaCaretDown />
-
-          <PopUpWindow className="PopUpWindow">
-
-                          {/* ANIME LIST */}
-
-            <PopUpWindowList>
-              <h2 className='titleListAnimes' > <img className='IconAnimeList' src={IconListAnime} alt="" />
- LISTA DE ANIMES</h2>
-              <h3>Animes legendados e dublados</h3>
-            </PopUpWindowList>
-
-
-                            {/* FILMES LIST */}
-
-            <PopUpWindowList>
-              <h2 className='titleListFilms' > <img className='IconFilmList' src={IconListFilms} alt="" /> LISTA DE FILMES</h2>
-              <h3> Filmes legendados e dublados</h3>
-            </PopUpWindowList>
-          </PopUpWindow>
-        </AnimeFilmsTab2>
-        
-        <UserNavegation>
-
-        <Link to="/search" className='searchlink'>
-          <Search>
-            <IoMdSearch className='SearchIcon' />
-          </Search>
+      <GlobalStyles />
+      <HeaderContainer>
+        <Container>
+          <Link to="/" className="Logo/">
+            <LogoImg src={Logo} alt="Logo Otakulandia" />
           </Link>
-          <Account>
 
-          <Link to="/login" className='loginLink'>
-            <HeaderAccount>
-              <RiUser3Line className='IconLoginAccount'/>
-              <p>Entrar</p>
-            </HeaderAccount>
+          <Link to="/" className="Logo/">
+            <LinkDiscord>
+              <FaHome className="IconDiscord" />
+            </LinkDiscord>
+          </Link>
+
+          <AnimeFilmsTab>
+            Menu <HiOutlineMenu className="menuIcon" />
+            <PopUpWindow className="PopUpWindow">
+              <PopUpWindowList>
+                <h2 className="titleListAnimes">
+                  <img className="IconAnimeList" src={IconListAnime} alt="" />
+                  TIER LIST Animes
+                </h2>
+                <h3>Lista animes por <br /> Tier-List</h3>
+              </PopUpWindowList>
+              <PopUpWindowList>
+                <h2 className="titleListFilms">
+                  <img className="IconFilmList" src={IconListFilms} alt="" />
+                  LISTA DE FILMES
+                </h2>
+                <h3 className="h3Films"> Filmes legendados e dublados</h3>
+              </PopUpWindowList>
+            </PopUpWindow>
+          </AnimeFilmsTab>
+
+          <AnimeFilmsTab2>
+            Animes/Filmes <FaCaretDown />
+            <PopUpWindow className="PopUpWindow">
+              <PopUpWindowList>
+                <h2 className="titleListAnimes">
+                  <img className="IconAnimeList" src={IconListAnime} alt="" />
+                  LISTA DE ANIMES
+                </h2>
+                <h3>Animes legendados e dublados</h3>
+              </PopUpWindowList>
+              <PopUpWindowList>
+                <h2 className="titleListFilms">
+                  <img className="IconFilmList" src={IconListFilms} alt="" />
+                  LISTA DE FILMES
+                </h2>
+                <h3> Filmes legendados e dublados</h3>
+              </PopUpWindowList>
+            </PopUpWindow>
+          </AnimeFilmsTab2>
+
+          <UserNavegation>
+            <Link to="/search" className="searchlink">
+              <Search>
+                <IoMdSearch className="SearchIcon" />
+              </Search>
             </Link>
-
-
-
-     
-
-                      {/* BOTAO DO REGISTER */}
-            <Link to="/register" className='registerLink'>
-            <StyledButton >
-                <StyledIcon />
-                CADASTRE-SE
-            </StyledButton>
-            </Link>
-
-          </Account>
-        </UserNavegation>
-      </Container>
-    </HeaderContainer>
+            <Account>
+              {user ? (
+                <>
+                  {user.role === 'admin' && (
+                    <Link to="/admin" className="adminLink">
+                      <HeaderAccount>
+                        <RiUser3Line className="IconLoginAccount" />
+                        <p>Admin</p>
+                      </HeaderAccount>
+                    </Link>
+                  )}
+                  <button onClick={signOut}>Logout</button>
+                </>
+              ) : (
+                <>
+                  <Link to="/login" className="loginLink">
+                    <HeaderAccount>
+                      <RiUser3Line className="IconLoginAccount" />
+                      <p>Entrar</p>
+                    </HeaderAccount>
+                  </Link>
+                  <Link to="/register" className="registerLink">
+                    <StyledButton>
+                      <StyledIcon />
+                      CADASTRE-SE
+                    </StyledButton>
+                  </Link>
+                </>
+              )}
+            </Account>
+          </UserNavegation>
+        </Container>
+      </HeaderContainer>
     </ScrollableContainer>
-
   );
 };
 

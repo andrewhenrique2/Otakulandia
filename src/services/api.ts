@@ -1,20 +1,9 @@
+// src/services/api.ts
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:3000/api', // Certifique-se de que a URL base está correta
+  baseURL: 'http://localhost:3000', // Certifique-se de que a URL base está correta
+  timeout: 10000, // Aumentar o tempo limite para 10 segundos
 });
 
-const fetchData = async (method: string, endpoint: string, data?: any) => {
-  try {
-    const response = await api.request({
-      method,
-      url: endpoint,
-      data,
-    });
-    return response.data;
-  } catch (error) {
-    throw new Error(`Erro ao fazer solicitação ${method} para ${endpoint}: ${error.message}`);
-  }
-};
-
-export default fetchData;
+export default api;

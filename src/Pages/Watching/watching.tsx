@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import { Container, Title, Description, VideoPlayer, NavigationButtons, EpisodeNavigation } from './styles';
 import AddEpisode from './AddEpisode';
+import { AuthContext } from '../../context/AuthContext';
 
 interface Episode {
   id: number;
@@ -15,7 +16,6 @@ interface Episode {
 }
 
 interface AnimeInfo {
-  id: string;
   title: string;
   description: string;
   episodes: Episode[];
@@ -27,6 +27,7 @@ function Watching() {
   const [showEpisodeList, setShowEpisodeList] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const { animeId } = useParams<{ animeId: string }>();
+  const { user } = useContext(AuthContext);
 
   const fetchAnimeInfo = async () => {
     try {
@@ -35,7 +36,7 @@ function Watching() {
       setAnimeInfo(response.data);
       setError(null);
       if (response.data.episodes && response.data.episodes.length > 0) {
-        setCurrentEpisode(response.data.episodes[response.data.episodes.length - 1]);
+        setCurrentEpisode(response.data.episodes[0]);
       }
     } catch (error) {
       console.error('Erro ao buscar informações do anime:', error);
@@ -119,7 +120,7 @@ function Watching() {
                 ))}
               </EpisodeNavigation>
             )}
-            <AddEpisode animeId={animeId!} onEpisodeAdded={fetchAnimeInfo} />
+            {user && user.role === 'admin' && <AddEpisode animeId={animeId!} onEpisodeAdded={fetchAnimeInfo} />}
           </>
         ) : (
           !error && <p>Carregando informações do anime...</p>

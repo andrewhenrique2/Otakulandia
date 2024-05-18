@@ -49,8 +49,7 @@ export const Container = styled.div`
   background-position: right top;
 `;
 
-
-export const Form = styled.div`
+export const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -116,7 +115,6 @@ export const Form = styled.div`
     width: 150px;
     height: 150px;
   }
-
 `;
 
 export const Input = styled.div`
@@ -153,4 +151,3 @@ export const InputField = styled.input`
     border-color: #fb8304; /* Cor da borda ao focar */
   }
 `;
-

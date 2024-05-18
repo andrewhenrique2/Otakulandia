@@ -1,24 +1,31 @@
-// Arquivo: AppRoutes.tsx
+// src/routes/AppRoutes.tsx
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Home from '../Pages/Home/index';
+import Home from '../Pages/Home';
 import SignUp from '../Pages/SignUp';
 import SignIn from '../Pages/SignIn'; 
 import Search from '../Pages/Search';
-import Watching from '../Pages/Watching/watching'; // Importando o componente Watching
-import AnimeDetails from '../Pages/AnimeDetails/AnimeDetailsPage'
+import Watching from '../Pages/Watching/watching';
+import AnimeDetails from '../Pages/AnimeDetails/AnimeDetailsPage';
+import AdminPage from '../Pages/Admin/AdminPage'; 
+import PrivateRoute from './PrivateRoute';
 
-export function AppRoutes() {
-    return (
-        <Routes>
-            <Route path="/" element={<Home/>} />
-            <Route path="/login" element={<SignIn />} />
-            <Route path="/register" element={<SignUp />} />
-            <Route path="/search" element={<Search />} />
-            <Route path="/anime-details/:animeId" element={<AnimeDetails />} />
-            <Route path="/watching/:animeId" element={<Watching />} /> {/* Rota para Watching */}
-        </Routes>
-    )
+const AppRoutes = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<SignIn />} />
+      <Route path="/register" element={<SignUp />} />
+      <Route path="/search" element={<Search />} />
+      <Route path="/anime-details/:animeId" element={<AnimeDetails />} />
+      <Route path="/watching/:animeId" element={<Watching />} />
+      <Route path="/admin" element={
+        <PrivateRoute>
+          <AdminPage />
+        </PrivateRoute>
+      } />
+    </Routes>
+  );
 }
 
 export default AppRoutes;

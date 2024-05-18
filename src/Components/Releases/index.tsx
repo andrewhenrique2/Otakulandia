@@ -1,8 +1,9 @@
-import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
+import React, { useState, useEffect, ChangeEvent, FormEvent, useContext } from 'react';
 import { ReleasesContainer, LastReleases, LastReleasesVideos, ScrollableContainer, ReleaseVideo } from './ReleasesStyles';
 import fire from '../../assets/incendio.png';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { AuthContext } from '../../context/AuthContext';
 
 interface Episode {
   id: string;
@@ -39,6 +40,7 @@ const Release = () => {
     videoUrl: ''
   });
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchReleases = async () => {
@@ -160,21 +162,25 @@ const Release = () => {
         </LastReleasesVideos>
       </ReleasesContainer>
 
-      <form onSubmit={handleFormSubmit}>
-        <input type="text" name="title" placeholder="Título do Anime" value={newRelease.title} onChange={handleInputChange} required />
-        <textarea name="description" placeholder="Descrição do Anime" value={newRelease.description} onChange={handleInputChange} required />
-        <input type="text" name="imageUrl" placeholder="URL da Imagem" value={newRelease.imageUrl} onChange={handleInputChange} required />
-        <button type="submit">Adicionar Anime</button>
-      </form>
+      {user && user.role === 'admin' && (
+        <>
+          <form onSubmit={handleFormSubmit}>
+            <input type="text" name="title" placeholder="Título do Anime" value={newRelease.title} onChange={handleInputChange} required />
+            <textarea name="description" placeholder="Descrição do Anime" value={newRelease.description} onChange={handleInputChange} required />
+            <input type="text" name="imageUrl" placeholder="URL da Imagem" value={newRelease.imageUrl} onChange={handleInputChange} required />
+            <button type="submit">Adicionar Anime</button>
+          </form>
 
-      <form onSubmit={handleEpisodeFormSubmit}>
-        <input type="text" name="animeId" placeholder="ID do Anime" value={newEpisode.animeId} onChange={handleEpisodeInputChange} required />
-        <input type="text" name="title" placeholder="Título do Episódio" value={newEpisode.title} onChange={handleEpisodeInputChange} required />
-        <input type="number" name="episodeNumber" placeholder="Número do Episódio" value={newEpisode.episodeNumber.toString()} onChange={handleEpisodeInputChange} required />
-        <textarea name="description" placeholder="Descrição do Episódio" value={newEpisode.description} onChange={handleEpisodeInputChange} required />
-        <input type="text" name="videoUrl" placeholder="URL do Vídeo" value={newEpisode.videoUrl} onChange={handleEpisodeInputChange} required />
-        <button type="submit">Adicionar Episódio</button>
-      </form>
+          <form onSubmit={handleEpisodeFormSubmit}>
+            <input type="text" name="animeId" placeholder="ID do Anime" value={newEpisode.animeId} onChange={handleEpisodeInputChange} required />
+            <input type="text" name="title" placeholder="Título do Episódio" value={newEpisode.title} onChange={handleEpisodeInputChange} required />
+            <input type="number" name="episodeNumber" placeholder="Número do Episódio" value={newEpisode.episodeNumber.toString()} onChange={handleEpisodeInputChange} required />
+            <textarea name="description" placeholder="Descrição do Episódio" value={newEpisode.description} onChange={handleEpisodeInputChange} required />
+            <input type="text" name="videoUrl" placeholder="URL do Vídeo" value={newEpisode.videoUrl} onChange={handleEpisodeInputChange} required />
+            <button type="submit">Adicionar Episódio</button>
+          </form>
+        </>
+      )}
     </ScrollableContainer>
   );
 };

@@ -1,75 +1,127 @@
+// src/Pages/SignUp/index.tsx
 import React, { useState } from 'react';
-import Header from '../../Components/Header';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import GlobalStyles from '../../GlobalStyles';
-import { Container, Form, Input, Icon, InputField } from "./styles";
+import { Container, FormWrapper, Input, Icon, InputField } from "./styles";
 import { FaUser } from "react-icons/fa";
-import coroa from '../../assets/coroa.png'
+import coroa from '../../assets/coroa.png';
+import { toast } from 'react-toastify';
 
-function SignUp() {
+const SignUp = () => {
   const [focusedInput, setFocusedInput] = useState<string | null>(null);
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
+  const { signUp } = useAuth();
+  const navigate = useNavigate();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (formData.password !== formData.confirmPassword) {
+      alert("As senhas não coincidem");
+      return;
+    }
+    try {
+      console.log('Sending signup request with:', formData);
+      await signUp({
+        username: formData.username,
+        email: formData.email,
+        password: formData.password
+      });
+      toast.success('Usuário cadastrado com sucesso!');
+      console.log('User registered successfully');
+      navigate('/'); // Redireciona para a home após o cadastro
+    } catch (error) {
+      console.error('Error during signup:', error);
+      toast.error('Erro ao cadastrar usuário!');
+    }
+  };
 
   return (
     <>
       <GlobalStyles />
-      <Header />
       <Container>
-        <Form>
-          <img className='imgcoroa' src={coroa} alt="" />
-          <h2>Crie sua conta</h2>
-          <Input>
-            <Icon>
-              <FaUser fill={focusedInput === 'username' ? "#fb8304" : "#fff"} />
-            </Icon>
-            <InputField
-              onFocus={() => setFocusedInput('username')}
-              onBlur={() => setFocusedInput(null)}
-              type="text"
-              placeholder='Nome de usuário' />
-          </Input>
-
-          <Input>
-            <Icon>
-              <FaUser fill={focusedInput === 'email' ? "#fb8304" : "#fff"} />
-            </Icon>
-            <InputField
-              onFocus={() => setFocusedInput('email')}
-              onBlur={() => setFocusedInput(null)}
-              type="text"
-              placeholder='E-mail' />
-          </Input>
-
-          <Input>
-            <Icon>
-              <FaUser fill={focusedInput === 'password' ? "#fb8304" : "#fff"} />
-            </Icon>
-            <InputField
-              onFocus={() => setFocusedInput('password')}
-              onBlur={() => setFocusedInput(null)}
-              type="password"
-              placeholder='Senha' />
-          </Input>
-
-          <Input>
-            <Icon>
-              <FaUser fill={focusedInput === 'confirmPassword' ? "#fb8304" : "#fff"} />
-            </Icon>
-            <InputField
-              onFocus={() => setFocusedInput('confirmPassword')}
-              onBlur={() => setFocusedInput(null)}
-              type="password"
-              placeholder='Confirme sua senha' />
-          </Input>
-
-          <p className='declaracao'>Ao se registrar, você aceita nossos <span>termos de uso</span>  e a nossa <span> política de privacidade.</span></p>
-            <button className='CadastrarButton' >
-                <p>CADASTRAR</p>
+        <form onSubmit={handleSubmit}>
+          <FormWrapper>
+            <img className='imgcoroa' src={coroa} alt="" />
+            <h2>Crie sua conta</h2>
+            <Input>
+              <Icon>
+                <FaUser fill={focusedInput === 'username' ? "#fb8304" : "#fff"} />
+              </Icon>
+              <InputField
+                name="username"
+                onFocus={() => setFocusedInput('username')}
+                onBlur={() => setFocusedInput(null)}
+                onChange={handleChange}
+                type="text"
+                placeholder='Nome de usuário'
+                required
+                autoComplete="username"
+              />
+            </Input>
+            <Input>
+              <Icon>
+                <FaUser fill={focusedInput === 'email' ? "#fb8304" : "#fff"} />
+              </Icon>
+              <InputField
+                name="email"
+                onFocus={() => setFocusedInput('email')}
+                onBlur={() => setFocusedInput(null)}
+                onChange={handleChange}
+                type="email"
+                placeholder='E-mail'
+                required
+                autoComplete="email"
+              />
+            </Input>
+            <Input>
+              <Icon>
+                <FaUser fill={focusedInput === 'password' ? "#fb8304" : "#fff"} />
+              </Icon>
+              <InputField
+                name="password"
+                onFocus={() => setFocusedInput('password')}
+                onBlur={() => setFocusedInput(null)}
+                onChange={handleChange}
+                type="password"
+                placeholder='Senha'
+                required
+                autoComplete="new-password"
+              />
+            </Input>
+            <Input>
+              <Icon>
+                <FaUser fill={focusedInput === 'confirmPassword' ? "#fb8304" : "#fff"} />
+              </Icon>
+              <InputField
+                name="confirmPassword"
+                onFocus={() => setFocusedInput('confirmPassword')}
+                onBlur={() => setFocusedInput(null)}
+                onChange={handleChange}
+                type="password"
+                placeholder='Confirme sua senha'
+                required
+                autoComplete="new-password"
+              />
+            </Input>
+            <p className='declaracao'>Ao se registrar, você aceita nossos <span>termos de uso</span> e a nossa <span>política de privacidade.</span></p>
+            <button className='CadastrarButton' type="submit">
+              <p>CADASTRAR</p>
             </button>
-          
-        </Form>
-
+          </FormWrapper>
+        </form>
       </Container>
     </>
   );
-}
+};
 
 export default SignUp;
