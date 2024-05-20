@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { backgrounds } from '../../theme';
 
 export const Container = styled.div`
-  padding: 9rem 17rem 0 17rem;
-  height: 100%;
+  padding: 9rem 17rem 9rem 17rem;
+  height: 430px;
   background: 
   linear-gradient(rgba(36, 36, 36, 0.95), #100e0e), /* Aqui ajustamos a transparência para 0.95 */
 url(${backgrounds.kage}) center/cover no-repeat;
@@ -37,10 +37,16 @@ url(${backgrounds.kage}) center/cover no-repeat;
   .sinopse {
     font-size: 2rem;
     color: #fff;
-    margin-left: 3rem;
+    margin-left: 7rem;
 
     .score {
       font-size: 3rem;
+      font-family: K2D;
+    }
+
+    .title {
+      color: #dc6404;
+      font-size: 4rem;
       font-family: K2D;
     }
   }

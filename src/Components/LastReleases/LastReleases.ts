@@ -9,6 +9,18 @@ export const ScrollableContainer = styled.div`
   &::-webkit-scrollbar {
     width: 8px; /* Largura da barra de rolagem */
   }
+  form {
+    gap: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .h3z {
+    color: white;
+    font-family: K2D;
+    font-size: 3rem;
+  }
 
   /* Estilo para o polegar (thumb) da barra de rolagem */
   &::-webkit-scrollbar-thumb {

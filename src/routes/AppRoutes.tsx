@@ -5,7 +5,7 @@ import SignUp from '../Pages/SignUp';
 import SignIn from '../Pages/SignIn'; 
 import Search from '../Pages/Search';
 import Watching from '../Pages/Watching/watching';
-import AnimeDetails from '../Pages/AnimeDetails/AnimeDetailsPage';
+import AnimeDetailsPage from '../Pages/AnimeDetails/AnimeDetailsPage'; 
 import AdminPage from '../Pages/Admin/AdminPage'; 
 import PrivateRoute from './PrivateRoute';
 
@@ -16,7 +16,7 @@ const AppRoutes = () => {
       <Route path="/login" element={<SignIn />} />
       <Route path="/register" element={<SignUp />} />
       <Route path="/search" element={<Search />} />
-      <Route path="/anime-details/:animeId" element={<AnimeDetails />} />
+      <Route path="/anime-details/:animeId" element={<AnimeDetailsPage />} />
       <Route path="/watching/:animeId" element={<Watching />} />
       <Route path="/admin" element={
         <PrivateRoute>

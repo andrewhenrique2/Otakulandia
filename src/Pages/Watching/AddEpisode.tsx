@@ -1,5 +1,6 @@
+// src/Pages/Watching/AddEpisode.tsx
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-import axios from 'axios';
+import api from '../../services/api';
 
 interface AddEpisodeProps {
   animeId: string;
@@ -25,7 +26,11 @@ const AddEpisode: React.FC<AddEpisodeProps> = ({ animeId, onEpisodeAdded }) => {
   const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post(`/api/animes/${animeId}/episodes`, newEpisode);
+      const episodeData = {
+        ...newEpisode,
+        origin: 'watching' // Definindo a origem como 'watching'
+      };
+      await api.post(`/api/animes/${animeId}/episodes`, episodeData);
       setNewEpisode({
         title: '',
         episodeNumber: '',

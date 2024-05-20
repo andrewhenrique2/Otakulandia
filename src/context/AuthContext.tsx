@@ -1,6 +1,7 @@
+// src/context/AuthContext.tsx
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import api from '../services/api';
-import { useNavigate } from 'react-router-dom';
+import api from '../services/api'; // Use a instância do axios configurada
+import { useNavigate } from 'react-router-dom'; // Adicione isso para navegação
 
 interface User {
   id: string;
@@ -26,7 +27,7 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Adicione isso para navegação
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -49,7 +50,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       localStorage.setItem('token', token);
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       setUser(user);
-      navigate('/'); // Redirect to home page after successful login
+      navigate('/'); // Redireciona para a página inicial após o login
     } catch (error) {
       throw new Error('Login failed');
     } finally {
@@ -73,7 +74,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     localStorage.removeItem('token');
     delete api.defaults.headers.common['Authorization'];
     setUser(null);
-    navigate('/login'); // Redirect to login page after sign out
+    navigate('/login'); // Redireciona para a página de login após o logout
   };
 
   return (

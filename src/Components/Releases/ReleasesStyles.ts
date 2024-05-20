@@ -1,7 +1,15 @@
+import { backgrounds } from './../../theme';
 import styled, { keyframes } from 'styled-components';
 import { backgrounds } from '../../theme';
 
 export const ScrollableContainer = styled.div`
+
+background: 
+    linear-gradient(rgba(36, 36, 36, 0.9), #100e0e),
+    url(${backgrounds.kage}) center/cover no-repeat;
+    background-attachment: fixed;
+
+
   scrollbar-width: thin;
   &::-webkit-scrollbar {
     width: 8px;
@@ -19,6 +27,38 @@ export const ScrollableContainer = styled.div`
   &::-webkit-scrollbar-track {
     background-color: #f0f0f0;
     border-radius: 4px;
+  }
+form {
+  display: flex;
+  flex-direction: column;
+  input, textarea, button {
+    max-width: 40rem;
+    margin: 1rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  button {
+    padding: 2rem;
+    border: none;
+    border-radius: 10px;
+    background-color: #535050;
+    color: #e05000;
+    cursor: pointer;
+    font-size: 2rem;
+  }
+}
+  .h1z {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin: 0 auto;
+    background-color: transparent;
+    font-size: 3rem;
+    font-family: K2D;
+    color: #fff;
   }
 `;
 

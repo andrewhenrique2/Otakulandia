@@ -1,3 +1,4 @@
+// src/Pages/Search/Search.tsx
 import React, { useEffect, useState } from 'react';
 import GlobalStyles from '../../GlobalStyles';
 import { Container } from "./styles";
@@ -5,8 +6,7 @@ import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import SearchInput from './SearchInput';
 import { Link } from 'react-router-dom';
-
-const api = 'https://kitsu.io/api/edge';
+import animeApi from '../../services/animeApi'; // Importa a nova instância do Axios
 
 function Search() {
   const [info, setInfo] = useState({});
@@ -15,13 +15,13 @@ function Search() {
   useEffect(() => {
     if (text) {
       setInfo({});
-      fetch(
-        `${api}/anime?filter[text]=${text}&page[limit]=12`
-      )
-        .then((response) => response.json())
+      animeApi.get(`/anime?filter[text]=${text}&page[limit]=12`)
         .then((response) => {
-          setInfo(response);
+          setInfo(response.data);
         })
+        .catch(error => {
+          console.error('Erro ao buscar animes:', error);
+        });
     }
   }, [text]);
 
@@ -40,7 +40,7 @@ function Search() {
           <ul className='anime-list'>
             {info.data.map((anime) => (
               <li key={anime.id}>
-                <Link to={`/AnimeDetails/${anime.id}`} className='anime-details'> {/* Adicione o ID do anime à URL */}
+                <Link to={`/anime-details/${anime.id}`} className='anime-details'>
                   <img
                     src={anime.attributes.posterImage.small}
                     alt={anime.attributes.canonicalTitle}

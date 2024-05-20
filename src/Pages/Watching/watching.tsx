@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import api from '../../services/api';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import { Container, Title, Description, VideoPlayer, NavigationButtons, EpisodeNavigation } from './styles';
 import AddEpisode from './AddEpisode';
 import { AuthContext } from '../../context/AuthContext';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 interface Episode {
   id: number;
@@ -21,8 +22,15 @@ interface AnimeInfo {
   episodes: Episode[];
 }
 
+interface FilmInfo {
+  title: string;
+  description: string;
+  videoUrl: string;
+}
+
 function Watching() {
   const [animeInfo, setAnimeInfo] = useState<AnimeInfo | null>(null);
+  const [filmInfo, setFilmInfo] = useState<FilmInfo | null>(null);
   const [currentEpisode, setCurrentEpisode] = useState<Episode | null>(null);
   const [showEpisodeList, setShowEpisodeList] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -31,32 +39,46 @@ function Watching() {
 
   const fetchAnimeInfo = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/anime-info/${animeId}`);
-      console.log('Anime Info:', response.data);
+      const response = await api.get(`/api/anime-info/${animeId}`);
       setAnimeInfo(response.data);
       setError(null);
       if (response.data.episodes && response.data.episodes.length > 0) {
-        setCurrentEpisode(response.data.episodes[0]);
+        const firstEpisode = response.data.episodes[0];
+        const episodeNumber = parseInt(window.location.hash.replace('#', ''), 10);
+        const initialEpisode = response.data.episodes.find(ep => ep.episodeNumber === episodeNumber) || firstEpisode;
+        setCurrentEpisode(initialEpisode);
       }
     } catch (error) {
-      console.error('Erro ao buscar informações do anime:', error);
       setError('Erro ao buscar informações do anime.');
+      fetchFilmInfo();
+    }
+  };
+
+  const fetchFilmInfo = async () => {
+    try {
+      const response = await api.get(`/api/film-info/${animeId}`);
+      setFilmInfo(response.data);
+      setError(null);
+    } catch (error) {
+      setError('Erro ao buscar informações do filme.');
     }
   };
 
   useEffect(() => {
-    console.log("animeId:", animeId);
     if (animeId) {
       fetchAnimeInfo();
     }
   }, [animeId]);
 
   useEffect(() => {
-    console.log("currentEpisode:", currentEpisode);
+    if (currentEpisode) {
+      window.location.hash = currentEpisode.episodeNumber.toString();
+    }
   }, [currentEpisode]);
 
   const handleEpisodeChange = (episode: Episode) => {
     setCurrentEpisode(episode);
+    window.location.hash = episode.episodeNumber.toString();
   };
 
   const handleNextEpisode = () => {
@@ -87,7 +109,7 @@ function Watching() {
         {animeInfo ? (
           <>
             <Title>{animeInfo.title}</Title>
-            <Description>{animeInfo.description}</Description>
+            <Description>Episódio {currentEpisode?.episodeNumber}</Description>
             {currentEpisode && currentEpisode.videoUrl ? (
               <VideoPlayer>
                 <iframe
@@ -102,13 +124,13 @@ function Watching() {
             )}
             <NavigationButtons>
               <button onClick={handlePrevEpisode} disabled={!currentEpisode || animeInfo.episodes.findIndex(ep => ep.id === currentEpisode.id) === 0}>
-                Episódio anterior
+                <FaArrowLeft />
               </button>
               <button onClick={() => setShowEpisodeList(!showEpisodeList)}>
                 {showEpisodeList ? 'Esconder episódios' : 'Lista de episódios'}
               </button>
               <button onClick={handleNextEpisode} disabled={!currentEpisode || animeInfo.episodes.findIndex(ep => ep.id === currentEpisode.id) === animeInfo.episodes.length - 1}>
-                Próximo episódio
+                <FaArrowRight />
               </button>
             </NavigationButtons>
             {showEpisodeList && (
@@ -123,7 +145,22 @@ function Watching() {
             {user && user.role === 'admin' && <AddEpisode animeId={animeId!} onEpisodeAdded={fetchAnimeInfo} />}
           </>
         ) : (
-          !error && <p>Carregando informações do anime...</p>
+          filmInfo ? (
+            <>
+              <Title>{filmInfo.title}</Title>
+              <Description>{filmInfo.description}</Description>
+              <VideoPlayer>
+                <iframe
+                  src={filmInfo.videoUrl}
+                  title={filmInfo.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </VideoPlayer>
+            </>
+          ) : (
+            !error && <p>Carregando informações...</p>
+          )
         )}
       </Container>
       <Footer />
