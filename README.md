@@ -15,6 +15,8 @@
 - **🎨 React Icons**
 - **🍞 React Toastify**
 - **🆔 UUID**
+- **⌨️ TypeScript**
+- **🎥 React Player**
 
 ## 🔧 Funcionalidades
 
