@@ -1,9 +1,9 @@
-// src/Components/Header/index.tsx
 import React, { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { Link } from 'react-router-dom';
 import {
   HeaderContainer,
+  FaUserCircle,
   Container,
   LogoImg,
   StyledButton,
@@ -22,10 +22,14 @@ import {
 import Logo from '../../assets/Otakulandia.png';
 import IconListFilms from '../../assets/buttonListFilms.png';
 import IconListAnime from '../../assets/buttonListAnimes.png';
-import { FaCaretDown, FaHome } from 'react-icons/fa';
+import { FaCaretDown, FaHome, FaUserCircle } from 'react-icons/fa';
 import { HiOutlineMenu } from 'react-icons/hi';
+import Donate from '../../assets/donation.png'
+import notepad from '../../assets/notepad.png'
+
 import { RiUser3Line } from 'react-icons/ri';
 import { IoMdSearch } from 'react-icons/io';
+import { CiLogout } from 'react-icons/ci'; // Certifique-se de que o ícone de logout está sendo importado corretamente
 import GlobalStyles from '../../GlobalStyles';
 
 const Header = () => {
@@ -50,18 +54,20 @@ const Header = () => {
             Menu <HiOutlineMenu className="menuIcon" />
             <PopUpWindow className="PopUpWindow">
               <PopUpWindowList>
-                <h2 className="titleListAnimes">
-                  <img className="IconAnimeList" src={IconListAnime} alt="" />
-                  TIER LIST Animes
+                <h2 className="titleListAnimes-donate">
+                  <img className="IconAnimeList" src={Donate} alt="" />
+                  Doações
                 </h2>
-                <h3>Lista animes por <br /> Tier-List</h3>
+                <h3>Ajude-nos a manter o <br />site, Faca sua doação.</h3>
               </PopUpWindowList>
+
+
               <PopUpWindowList>
-                <h2 className="titleListFilms">
-                  <img className="IconFilmList" src={IconListFilms} alt="" />
-                  LISTA DE FILMES
+                <h2 className="titleListFilms-notes">
+                  <img className="IconFilmList" src={notepad} alt="" />
+                  Notes
                 </h2>
-                <h3 className="h3Films"> Filmes legendados e dublados</h3>
+                <h3 className="h3Films"> correção de bugs, atualizações, novidades.</h3>
               </PopUpWindowList>
             </PopUpWindow>
           </AnimeFilmsTab>
@@ -77,7 +83,7 @@ const Header = () => {
                 <h3>Animes legendados e dublados</h3>
               </PopUpWindowList>
               <PopUpWindowList>
-                <h2 className="titleListFilms">
+                <h2 className="titleListFilms-filmes">
                   <img className="IconFilmList" src={IconListFilms} alt="" />
                   LISTA DE FILMES
                 </h2>
@@ -103,7 +109,13 @@ const Header = () => {
                       </HeaderAccount>
                     </Link>
                   )}
-                  <button onClick={signOut}>Logout</button>
+                  <Link to="/user">
+                    <FaUserCircle style={{ fontSize: '3rem', color: '#fff', margin: '3rem' }} />
+                  </Link>
+                  <StyledButton onClick={signOut}>
+                    <CiLogout className='logouticon' />
+                    Logout
+                  </StyledButton>
                 </>
               ) : (
                 <>

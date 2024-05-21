@@ -1,16 +1,13 @@
-import { backgrounds } from './../../theme';
 import styled, { keyframes } from 'styled-components';
 import { backgrounds } from '../../theme';
 
 export const ScrollableContainer = styled.div`
-
-background: 
+  background: 
     linear-gradient(rgba(36, 36, 36, 0.9), #100e0e),
     url(${backgrounds.kage}) center/cover no-repeat;
-    background-attachment: fixed;
-
-
+  background-attachment: fixed;
   scrollbar-width: thin;
+  
   &::-webkit-scrollbar {
     width: 8px;
   }
@@ -28,27 +25,29 @@ background:
     background-color: #f0f0f0;
     border-radius: 4px;
   }
-form {
-  display: flex;
-  flex-direction: column;
-  input, textarea, button {
-    max-width: 40rem;
-    margin: 1rem auto;
+
+  form {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    flex-direction: column;
+    input, textarea, button {
+      max-width: 40rem;
+      margin: 1rem auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    button {
+      padding: 2rem;
+      border: none;
+      border-radius: 10px;
+      background-color: #535050;
+      color: #e05000;
+      cursor: pointer;
+      font-size: 2rem;
+    }
   }
-  button {
-    padding: 2rem;
-    border: none;
-    border-radius: 10px;
-    background-color: #535050;
-    color: #e05000;
-    cursor: pointer;
-    font-size: 2rem;
-  }
-}
+
   .h1z {
     display: flex;
     justify-content: center;
@@ -108,40 +107,33 @@ export const LastReleasesVideos = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 15px;
-  .wtf {
-    padding: 1rem;
-    font-family: 'Helvetica Neue';
-    display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    margin: 1rem auto;
-    border: 1px solid #282424;
-    background-color: #282424;
-    border-radius: 10px;
-    width: 50%;
-    gap: 1rem;
-    font-size: 1.5rem;
-    color: #ffffff;
-    span {
-      margin-bottom: .3rem;
-      font-size: 2rem;
-      font-family: K2D;
-      font-weight: bolder;
-      color: orange;
-    }
-  }
+  margin: 0 auto;
 `;
 
 export const ReleaseVideo = styled.div`
   margin: 0;
   margin-top: 1.9rem;
-  border: 3px solid #151714;
+  border: 3px solid #171518;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
   background-color: #100e0e;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 1.5);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  overflow: hidden;
+
+  h1 {
+    filter: brightness(150%);
+    max-width: 100%;
+    max-height: 8%;
+    font-family: K2D;
+    border-radius: 10px;
+    margin: .8rem auto;
+    background-color: #282424;
+    padding: .5rem;
+    font-size: 2rem;
+    color: #ffa50a;
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 1);
+  }
 
   p {
     font-size: 2rem;
@@ -149,35 +141,8 @@ export const ReleaseVideo = styled.div`
     margin-bottom: 0.8rem;
   }
 
-  .image-container img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
-  }
+  .wtf {
 
-  .title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-  }
-
-  .score {
-    color: orange;
-  }
-
-  .url {
-    color: dodgerblue;
-    text-decoration: underline;
-  }
-`;
-
-export const LogoImg = styled.img`
-  max-width: 100%;
-  height: 230px;
-  object-fit: cover;
-`;
-
-export const NumberEp = styled.div`
   font-family: 'Helvetica Neue';
   align-items: center;
   text-align: center;
@@ -192,11 +157,34 @@ export const NumberEp = styled.div`
   font-size: 1.5rem;
   color: #ffffff;
 
-  .epi {
+  span {
     font-size: 2rem;
-    margin-top: 16.5px;
     font-family: K2D;
     font-weight: bolder;
     color: orange;
   }
+  }
+
+  .image-container {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+  }
+
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+  }
+`;
+
+export const LogoImg = styled.img`
+  border-radius: 10px;
+  width: 100%;
+  height: 300px; 
+  object-fit: cover;
+`;
+
+export const NumberEp = styled.div`
+
 `;

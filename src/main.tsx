@@ -14,7 +14,7 @@ root.render(
       <AuthProvider>
         <GlobalStyles />
         <AppRoutes />
-        <ToastContainer />
+        <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>

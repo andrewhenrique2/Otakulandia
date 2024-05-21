@@ -7,6 +7,7 @@ export const Container = styled.div`
   max-width: 600px;
   margin: 2rem auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
 `;
 
 export const Form = styled.form`
@@ -36,26 +37,5 @@ export const Button = styled.button`
 `;
 
 export const Title = styled.h1`
-  text-align: center;
   margin-bottom: 2rem;
-`;
-
-export const BackButton = styled.button`
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-  padding: 0.5rem 1rem;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  border-radius: 4px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #0056b3;
-  }
-
-  svg {
-    margin-right: 0.5rem;
-  }
 `;

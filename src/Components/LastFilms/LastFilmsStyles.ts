@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import { backgrounds } from '../../theme';
 
-
 // Estilo para o componente de container com barra de rolagem
 export const ScrollableContainer = styled.div`
+
+
+
   /* Largura da barra de rolagem */
   scrollbar-width: thin; /* Para navegadores que suportam a propriedade scrollbar-width */
   &::-webkit-scrollbar {
@@ -40,8 +42,7 @@ export const ScrollableContainer = styled.div`
   }
 `;
 
-
-export const LastReleasesContainer = styled.div`
+export const LastFilmsContainer = styled.div`
   height: 100%;
   background: 
     linear-gradient(to bottom, rgba(0, 0, 0, 0.8), #060606),
@@ -53,17 +54,20 @@ export const LastReleasesContainer = styled.div`
 `;
 
 export const Container = styled.div`
-   display: flex;
+  display: flex;
+  height: 600px;
+  flex-wrap: wrap; /* Permite que os cards fiquem lado a lado e quebrem a linha se necessário */
   gap: 3rem;
 `;
-export const TitleLastAnimes = styled.div`
+
+export const TitleFilms = styled.div`
   padding: 1rem;
   display: flex;
   align-items: center;
   gap: 1rem;
 
-  /* Aplicar estilos específicos para a imagem .fire */
-  .fire {
+  /* Aplicar estilos específicos para a imagem .film */
+  .film {
     width: 60px;
     height: 60px;
     filter: hue-rotate(3deg) brightness(110%) saturate(100%) contrast(150%); /* Ajustar a cor da imagem para #FF5056 */
@@ -81,64 +85,4 @@ export const TitleLastAnimes = styled.div`
     font-size: 5rem;
     color: #FFFFFF; /* Cor do ícone */
   }
-`;
-
-
-export const ReleaseVideo = styled.div`
-    margin-top: 1.9rem;
-    border: 3px solid #171518;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    background-color: #100e0e;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 1.5); /* Adiciona uma sombra escura */
-    border-radius: 10px;
-
-    max-width: 100%; /* Defina o máximo de largura para 100% do contêiner pai */
-
-    h1 {
-    filter: brightness(150%);
-    max-width: 100%;
-    max-height: 8%;
-    font-family: K2D;
-    border-radius: 10px;
-    margin: .8rem auto;
-    background-color: #282424;
-    padding: .5rem;
-    font-size: 2rem;
-    color: #ffa50a;
-    text-shadow: 4px 4px 6px rgba(0, 0, 0, 1); /* Sombra mais forte */
-}
-`;
-
-export const LogoImg = styled.img`
-    border-radius: 10px;
-    width: 100%;
-   height: 350px; 
-   object-fit: cover;
-
-`;
-
-export const TitleFilms = styled.div`
-
-display: flex;
-align-items: center;
-text-align: center;
-justify-content: start;
-gap: 2.3rem;
-margin: 8rem 0 0 2rem;
-
-p {
-  font-size: 3.2rem;
-  font-family: 'Helvetica Neue';
-  color: #ebae4c;
-;
-}
-
-img {
-  padding-bottom: 2rem;
-  width: 60px;
-  height: 60px;
-}
-
 `;

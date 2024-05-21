@@ -1,3 +1,4 @@
+// Watching.tsx
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import api from '../../services/api';
@@ -50,6 +51,33 @@ function Watching() {
       }
     } catch (error) {
       setError('Erro ao buscar informações do anime.');
+      fetchRecentAnimeInfo();
+    }
+  };
+
+  const fetchRecentAnimeInfo = async () => {
+    try {
+      const response = await api.get(`/api/recent-animes/${animeId}`);
+      if (response.data) {
+        const animeData = {
+          title: response.data.title,
+          description: response.data.description,
+          episodes: [{
+            id: response.data.id,
+            title: response.data.title,
+            episodeNumber: response.data.episodeNumber,
+            description: response.data.description,
+            videoUrl: response.data.videoUrl
+          }]
+        };
+        setAnimeInfo(animeData);
+        setCurrentEpisode(animeData.episodes[0]);
+        setError(null);
+      } else {
+        fetchFilmInfo();
+      }
+    } catch (error) {
+      setError('Erro ao buscar informações do anime recente.');
       fetchFilmInfo();
     }
   };

@@ -30,14 +30,12 @@ const SignUp = () => {
       return;
     }
     try {
-      console.log('Sending signup request with:', formData);
       await signUp({
         username: formData.username,
         email: formData.email,
         password: formData.password
       });
       toast.success('Usuário cadastrado com sucesso!');
-      console.log('User registered successfully');
       navigate('/'); // Redireciona para a home após o cadastro
     } catch (error) {
       console.error('Error during signup:', error);

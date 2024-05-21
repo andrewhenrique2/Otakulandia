@@ -3,14 +3,17 @@ import api from '../../services/api';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { useContext } from 'react';
+import { Container, Form, Input, Button, Title, BackButton } from './AdminPageStyles';
+import { toast, ToastContainer } from 'react-toastify';
+import { FaArrowLeft } from 'react-icons/fa';
+import 'react-toastify/dist/ReactToastify.css';
+import './toastStyles.css'; // Import the custom styles for toast
 
 const AdminPage = () => {
   const [newAnime, setNewAnime] = useState({
     title: '',
     description: '',
     imageUrl: '',
-    episodeNumber: '',
-    videoUrl: ''
   });
 
   const [newEpisode, setNewEpisode] = useState({
@@ -54,12 +57,16 @@ const AdminPage = () => {
         title: '',
         description: '',
         imageUrl: '',
-        episodeNumber: '',
-        videoUrl: ''
       });
-      console.log("Anime adicionado com sucesso:", response.data);
+      toast.success(`Anime adicionado com sucesso! ID: ${response.data.id}`, {
+        className: 'custom-toast',
+        bodyClassName: 'custom-toast-body',
+      });
     } catch (error) {
-      console.error('Erro ao adicionar anime:', error);
+      toast.error('Erro ao adicionar anime', {
+        className: 'custom-toast',
+        bodyClassName: 'custom-toast-body',
+      });
     }
   };
 
@@ -74,33 +81,45 @@ const AdminPage = () => {
         description: '',
         videoUrl: ''
       });
-      console.log("Episódio adicionado com sucesso");
+      toast.success('Episódio adicionado com sucesso!', {
+        className: 'custom-toast',
+        bodyClassName: 'custom-toast-body',
+      });
     } catch (error) {
-      console.error('Erro ao adicionar episódio:', error);
+      toast.error('Erro ao adicionar episódio', {
+        className: 'custom-toast',
+        bodyClassName: 'custom-toast-body',
+      });
     }
   };
 
-  return (
-    <div>
-      <h1>Página de Administração</h1>
-      <form onSubmit={addAnime}>
-        <input type="text" name="title" placeholder="Título do Anime" value={newAnime.title} onChange={handleAnimeChange} required />
-        <textarea name="description" placeholder="Descrição do Anime" value={newAnime.description} onChange={handleAnimeChange} required />
-        <input type="text" name="imageUrl" placeholder="URL da Imagem" value={newAnime.imageUrl} onChange={handleAnimeChange} required />
-        <input type="text" name="episodeNumber" placeholder="Número do Episódio" value={newAnime.episodeNumber} onChange={handleAnimeChange} required />
-        <input type="text" name="videoUrl" placeholder="URL do Vídeo" value={newAnime.videoUrl} onChange={handleAnimeChange} required />
-        <button type="submit">Adicionar Anime</button>
-      </form>
+  const handleBackClick = () => {
+    navigate('/');
+  };
 
-      <form onSubmit={addEpisode}>
-        <input type="text" name="animeId" placeholder="ID do Anime" value={newEpisode.animeId} onChange={handleEpisodeChange} required />
-        <input type="text" name="title" placeholder="Título do Episódio" value={newEpisode.title} onChange={handleEpisodeChange} required />
-        <input type="number" name="episodeNumber" placeholder="Número do Episódio" value={newEpisode.episodeNumber} onChange={handleEpisodeChange} required />
+  return (
+    <Container>
+      <ToastContainer />
+      <BackButton onClick={handleBackClick}>
+        <FaArrowLeft /> Voltar
+      </BackButton>
+      <Title>Página de Administração</Title>
+      <Form onSubmit={addAnime}>
+        <Input type="text" name="title" placeholder="Título do Anime" value={newAnime.title} onChange={handleAnimeChange} required />
+        <textarea name="description" placeholder="Descrição do Anime" value={newAnime.description} onChange={handleAnimeChange} required />
+        <Input type="text" name="imageUrl" placeholder="URL da Imagem" value={newAnime.imageUrl} onChange={handleAnimeChange} required />
+        <Button type="submit">Adicionar Anime</Button>
+      </Form>
+
+      <Form onSubmit={addEpisode}>
+        <Input type="text" name="animeId" placeholder="ID do Anime" value={newEpisode.animeId} onChange={handleEpisodeChange} required />
+        <Input type="text" name="title" placeholder="Título do Episódio" value={newEpisode.title} onChange={handleEpisodeChange} required />
+        <Input type="number" name="episodeNumber" placeholder="Número do Episódio" value={newEpisode.episodeNumber} onChange={handleEpisodeChange} required />
         <textarea name="description" placeholder="Descrição do Episódio" value={newEpisode.description} onChange={handleEpisodeChange} required />
-        <input type="text" name="videoUrl" placeholder="URL do Vídeo" value={newEpisode.videoUrl} onChange={handleEpisodeChange} required />
-        <button type="submit">Adicionar Episódio</button>
-      </form>
-    </div>
+        <Input type="text" name="videoUrl" placeholder="URL do Vídeo" value={newEpisode.videoUrl} onChange={handleEpisodeChange} required />
+        <Button type="submit">Adicionar Episódio</Button>
+      </Form>
+    </Container>
   );
 };
 

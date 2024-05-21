@@ -88,6 +88,7 @@ export const Search = styled.div`
 
 export const Account = styled.div`
   display: flex;
+  align-items: center;
   gap: 3rem;
 `;
 
@@ -171,9 +172,10 @@ export const StyledIcon = styled(BsPersonFillAdd)`
 
 export const StyledButton = styled(Button)`
   /* Adicione seus estilos personalizados aqui */
-
+.logouticon {
+  margin-right: 1rem;
+}
 `;
-// No HeaderStyles.ts
 
 export const AnimeFilmsTab = styled.div`
   position: relative;
@@ -270,8 +272,26 @@ export const PopUpWindowList = styled.div`
    height: 12rem;
   
   }
-  .titleListFilms {
+  .h3Films {
+    width: 100%;
+    max-width: 80%;
+  }
+
+.titleListAnimes-donate {
+  height: 12rem;
+    color: #58cc02;
+}
+.titleListFilms {
+  height: 12rem;
+}
+
+.titleListFilms-filmes {
+  height: 12rem;
     color: gold;
+}
+
+  .titleListFilms-notes {
+    color: #ef314c;
     height: 12rem;
 
   }

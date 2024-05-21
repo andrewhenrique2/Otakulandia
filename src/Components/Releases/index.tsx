@@ -12,7 +12,7 @@ interface Episode {
   episodeNumber: number;
   description: string;
   videoUrl: string;
-  origin: string; // Adicionar campo de origem
+  origin: string;
 }
 
 interface Release {
@@ -39,7 +39,7 @@ const Release = () => {
     episodeNumber: 0,
     description: '',
     videoUrl: '',
-    origin: '' // Adicionar campo de origem
+    origin: ''
   });
   const { user } = useContext(AuthContext);
 
@@ -109,7 +109,7 @@ const Release = () => {
         episodeNumber: 0,
         description: '',
         videoUrl: '',
-        origin: '' // Resetando o campo de origem
+        origin: ''
       });
       fetchReleases(); // Atualiza a lista de lançamentos
       window.alert(`Episódio adicionado com sucesso!`); // Exibe o alerta de sucesso
@@ -154,8 +154,10 @@ const Release = () => {
                     <img className='imgCardAnime' src={release.imageUrl} alt="Anime" />
                   </div>
                 </Link>
-                <p>{release.title}</p>
+                <div className="info">
+                <p className="title">{release.title}</p>
                 <p className='wtf'>EPISÓDIO <span>{episode.episodeNumber}</span></p> 
+                </div>
                 {user && user.role === 'admin' && (
                   <button onClick={() => deleteRelease(release.id)}>Remover</button>
                 )}
