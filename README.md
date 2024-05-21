@@ -57,8 +57,10 @@
 
    npm install
    npm run dev
-   
-O projeto estará disponível em http://localhost:3000.
+
+  
+Acesse o backend -> https://github.com/andrewhenrique2/OtkBack-End 
+O projeto estará disponível em http://localhost:3000. 
 
 🤝 Contribuições
 Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests.
