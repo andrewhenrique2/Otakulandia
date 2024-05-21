@@ -2,6 +2,7 @@
 
 ## Este é o repositório do frontend do projeto Otakulandia, um site de animes desenvolvido utilizando React e outras tecnologias modernas.
 
+
 ![2024-05-20 22-33-15 (1)](https://github.com/andrewhenrique2/Otakulandia/assets/103382295/dbea557c-ad82-4f37-88cd-d8fe44fdc152)
 
 
