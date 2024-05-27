@@ -42,7 +42,7 @@
 
 ![image](https://github.com/andrewhenrique2/Otakulandia/assets/103382295/7912aa40-241b-42b3-8f3b-356261153ab8)
 
-  - **👤 Usuário:** Página de gerenciamento de conta, incluindo alteração de senha e avatar.
+##  - **👤 Usuário:** Página de gerenciamento de conta, incluindo alteração de senha e avatar.
 
 ## 📦 Como Executar o Projeto
 
