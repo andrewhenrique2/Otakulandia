@@ -38,8 +38,9 @@
 ##  - **🔧 Admin:** Página de administração para adicionar animes, episódios e filmes. <br>
 ![image](https://github.com/andrewhenrique2/Otakulandia/assets/103382295/2ba58f1f-c12a-420b-aa7d-1219cdb6bf59)
 
-![image](https://github.com/andrewhenrique2/Otakulandia/assets/103382295/95184dbb-c57a-438a-bd35-5e2ead3006f7)
+##  - **🔑 Cadastro e Login: Páginas para registro de novos usuários e autenticação de usuários existentes.
 
+![image](https://github.com/andrewhenrique2/Otakulandia/assets/103382295/7912aa40-241b-42b3-8f3b-356261153ab8)
 
   - **👤 Usuário:** Página de gerenciamento de conta, incluindo alteração de senha e avatar.
 
