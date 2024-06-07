@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+// Adicione esta linha para verificar o valor da variável de ambiente
+console.log('API URL:', process.env.REACT_APP_API_URL);
+
 const api = axios.create({
   baseURL: process.env.REACT_APP_API_URL || 'http://localhost:3000', // Usa a variável de ambiente ou um valor padrão
   timeout: 10000, // Aumentar o tempo limite para 10 segundos

@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': 'http://localhost:3000', // Redireciona as requisições que começam com '/api' para o backend
+      '/api': 'http://localhost:3000', // Redireciona as requisições que começam com '/api' para o backend localmente
     },
   },
   resolve: {
@@ -14,6 +14,6 @@ export default defineConfig({
     },
   },
   define: {
-    'process.env': {} // Adiciona a definição de process.env
+    'process.env': process.env // Adiciona a definição de process.env
   }
 });
