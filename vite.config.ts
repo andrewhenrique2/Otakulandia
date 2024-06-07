@@ -11,8 +11,8 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      'axios': path.resolve(__dirname, 'node_modules/axios'),
-      'uuid': path.resolve(__dirname, 'node_modules/uuid')
+      'axios': path.resolve(__dirname, 'node_modules/axios/index.js'),
+      'uuid': path.resolve(__dirname, 'node_modules/uuid/dist/esm-browser/index.js')
     }
   },
   build: {
