@@ -1,8 +1,7 @@
-// src/services/api.ts
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:3000', // Certifique-se de que a URL base está correta
+  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:3000', // Usa a variável de ambiente ou um valor padrão
   timeout: 10000, // Aumentar o tempo limite para 10 segundos
 });
 

@@ -1,7 +1,7 @@
 // src/Components/LastFilms/index.tsx
 import React, { useState, useEffect, ChangeEvent, FormEvent, useContext } from 'react';
 import { Link } from 'react-router-dom'; // Certifique-se de que Link está sendo importado corretamente
-import { v4 as uuidv4 } from 'uuid'; // Importar uuid
+import { v4 as uuidv4 } from 'uuid';
 import { AuthContext } from '../../context/AuthContext';
 import api from '../../services/api';
 import { LastFilmsContainer, Container, TitleFilms, ScrollableContainer } from './LastFilmsStyles';
