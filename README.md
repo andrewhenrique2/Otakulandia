@@ -1,10 +1,10 @@
-# Otakulandia - Frontend 🌟
+# 🌟 Otakulandia - Frontend 🌟
 
 - Este é o repositório do frontend do projeto Otakulandia, um site de animes desenvolvido utilizando React e outras tecnologias modernas.
-[Acesse Otakulandia](https://otakulandia.vercel.app)
 
+- [Acesse Otakulandia](https://otakulandia.vercel.app)
 
-![2024-05-20 22-33-15 (1)](https://github.com/andrewhenrique2/Otakulandia/assets/103382295/dbea557c-ad82-4f37-88cd-d8fe44fdc152)
+<img src="https://github.com/andrewhenrique2/Otakulandia/assets/103382295/dbea557c-ad82-4f37-88cd-d8fe44fdc152" width="520" height="350">
 
 
 ## 🚀 Tecnologias Utilizadas
@@ -56,11 +56,16 @@
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/otakulandia-frontend.git
-   cd otakulandia-frontend
+   git clone https://github.com/seu-usuario/otakulandia.git
+   cd otakulandia
 
    npm install
    npm run dev
+
+   REACT_APP_API_URL=http://localhost:3000
+   JWT_SECRET=sua_chave_secreta
+
+
 
   
 Acesse o backend -> https://github.com/andrewhenrique2/OtkBack-End 
