@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
@@ -11,13 +10,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      'axios': path.resolve(__dirname, 'node_modules/axios/index.js'),
-      'uuid': path.resolve(__dirname, 'node_modules/uuid/dist/esm-browser/index.js')
-    }
-  },
-  build: {
-    rollupOptions: {
-      external: ['axios', 'uuid']
+      '@': '/src',
     }
   }
 });
