@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { resolve } from 'path-browserify';
 
 export default defineConfig({
   plugins: [react()],
@@ -11,7 +10,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      'react-toastify': resolve('node_modules/react-toastify')
+      'react-toastify': 'react-toastify'
     }
   }
 });
