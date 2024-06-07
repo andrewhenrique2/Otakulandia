@@ -11,6 +11,9 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': '/src',
-    }
+    },
+  },
+  define: {
+    'process.env': {} // Adiciona a definição de process.env
   }
 });

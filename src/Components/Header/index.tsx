@@ -3,7 +3,6 @@ import { AuthContext } from '../../context/AuthContext';
 import { Link } from 'react-router-dom';
 import {
   HeaderContainer,
-  FaUserCircle,
   Container,
   LogoImg,
   StyledButton,
@@ -24,12 +23,12 @@ import IconListFilms from '../../assets/buttonListFilms.png';
 import IconListAnime from '../../assets/buttonListAnimes.png';
 import { FaCaretDown, FaHome, FaUserCircle } from 'react-icons/fa';
 import { HiOutlineMenu } from 'react-icons/hi';
-import Donate from '../../assets/donation.png'
-import notepad from '../../assets/notepad.png'
+import Donate from '../../assets/donation.png';
+import notepad from '../../assets/notepad.png';
 
 import { RiUser3Line } from 'react-icons/ri';
 import { IoMdSearch } from 'react-icons/io';
-import { CiLogout } from 'react-icons/ci'; // Certifique-se de que o ícone de logout está sendo importado corretamente
+import { CiLogout } from 'react-icons/ci';
 import GlobalStyles from '../../GlobalStyles';
 
 const Header = () => {
@@ -60,7 +59,6 @@ const Header = () => {
                 </h2>
                 <h3>Ajude-nos a manter o <br />site, Faca sua doação.</h3>
               </PopUpWindowList>
-
 
               <PopUpWindowList>
                 <h2 className="titleListFilms-notes">
