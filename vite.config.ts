@@ -10,7 +10,12 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      'react-toastify': 'react-toastify'
+      'axios': 'axios'
+    }
+  },
+  build: {
+    rollupOptions: {
+      external: ['axios']
     }
   }
 });
