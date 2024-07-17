@@ -1,6 +1,6 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent, useContext } from 'react';
-import { Link } from 'react-router-dom'; // Importar Link
-import { v4 as uuidv4 } from 'uuid'; // Importar uuid
+import { Link } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 import { AuthContext } from '../../context/AuthContext';
 import api from '../../services/api';
 import { LastReleasesContainer, Container, TitleLastAnimes, ScrollableContainer } from './LastReleases';
@@ -36,7 +36,7 @@ const LastReleases = () => {
   const handleAnimeFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const animeWithId = { ...newAnime, id: uuidv4() }; // Adicionar ID único
+      const animeWithId = { ...newAnime, id: uuidv4() };
       await api.post('/api/recent-animes', animeWithId);
       setNewAnime({ id: '', title: '', description: '', imageUrl: '', episodeNumber: '', videoUrl: '' });
       fetchLatestAnimes();
@@ -45,7 +45,7 @@ const LastReleases = () => {
     }
   };
 
-  const handleDeleteAnime = async (animeId: string) => { // mudar para string
+  const handleDeleteAnime = async (animeId: string) => {
     try {
       await api.delete(`/api/recent-animes/${animeId}`);
       fetchLatestAnimes();

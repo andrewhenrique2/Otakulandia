@@ -1,5 +1,5 @@
 import React from "react";
-import { ReleaseVideo, LogoImg } from '../LastReleases/LastReleases'; // Importe os estilos necessários
+import { ReleaseVideo, LogoImg } from '../LastReleases/LastReleases';
 
 interface ReleaseCardProps {
   title: string;
@@ -10,7 +10,7 @@ interface ReleaseCardProps {
 }
 
 const ReleaseCard: React.FC<ReleaseCardProps> = ({ title, imgSrc, width = "300px", height = "400px", onDelete }) => (
-  <ReleaseVideo style={{ width, height }}> {/* Defina a largura do card */}
+  <ReleaseVideo style={{ width, height }}>
     <LogoImg src={imgSrc} alt={`Logo ${title}`} />
     <h1>{title}</h1>
     {onDelete && (

@@ -89,6 +89,16 @@ export const LastReleases = styled.div`
     filter: hue-rotate(3deg) brightness(110%) saturate(100%) contrast(150%);
     animation: ${fireAnimation} 5s ease-in-out infinite;
   }
+
+  @media (max-width: 768px) {
+    p {
+      font-size: 2rem;
+    }
+    .fire {
+      width: 40px;
+      height: 40px;
+    }
+  }
 `;
 
 export const ReleasesContainer = styled.div`
@@ -101,6 +111,13 @@ export const ReleasesContainer = styled.div`
   font-family: 'Helvetica Neue';
   position: relative;
   background-attachment: fixed;
+
+  @media (max-width: 1024px) {
+    padding: 2rem 5rem;
+  }
+  @media (max-width: 768px) {
+    padding: 1rem 2rem;
+  }
 `;
 
 export const LastReleasesVideos = styled.div`
@@ -108,6 +125,10 @@ export const LastReleasesVideos = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 15px;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const ReleaseVideo = styled.div`
@@ -119,50 +140,57 @@ export const ReleaseVideo = styled.div`
   justify-content: center;
   background-color: #100e0e;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 1.5);
+  border-radius: 10px;
   overflow: hidden;
+  position: relative;
+  width: 100%;
 
-  h1 {
+  .info {
+    padding: 1rem;
+  }
+
+  h1, p {
     filter: brightness(150%);
     max-width: 100%;
-    max-height: 8%;
     font-family: K2D;
     border-radius: 10px;
     margin: .8rem auto;
     background-color: #282424;
     padding: .5rem;
-    font-size: 2rem;
     color: #ffa50a;
     text-shadow: 4px 4px 6px rgba(0, 0, 0, 1);
   }
 
-  p {
+  h1 {
     font-size: 2rem;
-    color: white;
-    margin-bottom: 0.8rem;
+  }
+
+  p {
+    font-size: 1.5rem;
+    color: #ffffff;
   }
 
   .wtf {
+    font-family: 'Helvetica Neue';
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin: 1rem auto;
+    border: 1px solid #282424;
+    background-color: #282424;
+    border-radius: 10px;
+    width: 50%;
+    gap: 1rem;
+    display: flex;
+    font-size: 1.5rem;
+    color: #ffffff;
 
-  font-family: 'Helvetica Neue';
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  margin: 1rem auto;
-  border: 1px solid #282424;
-  background-color: #282424;
-  border-radius: 10px;
-  width: 50%;
-  gap: 1rem;
-  display: flex;
-  font-size: 1.5rem;
-  color: #ffffff;
-
-  span {
-    font-size: 2rem;
-    font-family: K2D;
-    font-weight: bolder;
-    color: orange;
-  }
+    span {
+      font-size: 2rem;
+      font-family: K2D;
+      font-weight: bolder;
+      color: orange;
+    }
   }
 
   .image-container {
@@ -174,7 +202,29 @@ export const ReleaseVideo = styled.div`
   .image-container img {
     width: 100%;
     height: 100%;
-    object-fit: fill;
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    .info {
+      padding: 0.5rem;
+    }
+    h1 {
+      font-size: 1.5rem;
+    }
+    p {
+      font-size: 1.2rem;
+    }
+    .wtf {
+      width: 70%;
+      font-size: 1.2rem;
+      span {
+        font-size: 1.5rem;
+      }
+    }
+    .image-container {
+      height: 200px;
+    }
   }
 `;
 
@@ -185,6 +235,4 @@ export const LogoImg = styled.img`
   object-fit: cover;
 `;
 
-export const NumberEp = styled.div`
-
-`;
+export const NumberEp = styled.div``;

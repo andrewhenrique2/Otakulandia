@@ -1,4 +1,3 @@
-// src/Pages/SignIn/styles.ts
 import styled, { keyframes } from "styled-components";
 import backgroundregister from '../../assets/solo3.jpg';
 
@@ -48,9 +47,14 @@ export const Container = styled.div`
   position: relative;
   background-attachment: fixed;
   background-position: right top;
+
+  @media (max-width: 768px) {
+    align-items: center;
+    padding: 2rem;
+    background-position: center; /* Centraliza o background */
+  }
 `;
 
-// Altere o nome do componente de "Form" para "FormWrapper" para evitar conflitos com o elemento form nativo
 export const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -118,6 +122,10 @@ export const FormWrapper = styled.div`
     height: 150px;
   }
 
+  @media (max-width: 768px) {
+    max-width: 90%;
+    padding: 2rem;
+  }
 `;
 
 export const Input = styled.div`

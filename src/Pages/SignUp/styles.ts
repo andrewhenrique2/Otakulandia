@@ -1,7 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import backgroundregister from '../../assets/solo2.jpg';
 
-// Definindo a animação de fadeIn
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -11,7 +10,6 @@ const fadeIn = keyframes`
   }
 `;
 
-// Definindo a animação de scale no hover
 const scaleIn = keyframes`
   from {
     transform: scale(1);
@@ -21,7 +19,6 @@ const scaleIn = keyframes`
   }
 `;
 
-// Definindo a animação de scale ao sair do hover
 const scaleOut = keyframes`
   from {
     transform: scale(1.05);
@@ -47,6 +44,12 @@ export const Container = styled.div`
   position: relative;
   background-attachment: fixed;
   background-position: right top;
+
+  @media (max-width: 768px) {
+    align-items: center;
+    padding: 2rem;
+    background-position: center;
+  }
 `;
 
 export const FormWrapper = styled.div`
@@ -72,21 +75,21 @@ export const FormWrapper = styled.div`
     font-size: 1.6rem;
     font-weight: bold;
     display: flex;
-    align-items: center; /* Centralizar itens verticalmente */
-    justify-content: center; /* Centralizar texto horizontalmente */
-    border-radius: 5px; /* Adicionar borda arredondada */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adicionar sombra */
-    outline: none; /* Remover contorno ao focar */
-    animation: ${fadeIn} 0.5s ease forwards; /* Aplicar a animação de fade-in */
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    outline: none;
+    animation: ${fadeIn} 0.5s ease forwards;
 
     &:hover {
-      filter: brightness(1.2) contrast(1.2); /* Aumentar o brilho e o contraste no hover */
-      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Altere a sombra no hover */
-      animation: ${scaleIn} 0.3s ease forwards; /* Aplicar a animação de scale no hover */
+      filter: brightness(1.2) contrast(1.2);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+      animation: ${scaleIn} 0.3s ease forwards;
     }
 
     &:not(:hover) {
-      animation: ${scaleOut} 0.5s ease forwards; /* Aplicar a animação de scale ao sair do hover */
+      animation: ${scaleOut} 0.5s ease forwards;
     }
   }
 
@@ -115,6 +118,11 @@ export const FormWrapper = styled.div`
     width: 150px;
     height: 150px;
   }
+
+  @media (max-width: 768px) {
+    max-width: 90%;
+    padding: 2rem;
+  }
 `;
 
 export const Input = styled.div`
@@ -123,7 +131,7 @@ export const Input = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 3rem; /* Ajuste conforme necessário */
+  margin-bottom: 3rem;
 `;
 
 export const Icon = styled.span`
@@ -140,14 +148,13 @@ export const InputField = styled.input`
   padding-left: 4rem;
   border: 2px solid #898989;
   background-color: #323232;
-  margin: 0; /* Ajuste conforme necessário */
-  border-radius: 5px; /* Ajuste conforme necessário */
+  margin: 0;
+  border-radius: 5px;
   color: #fff;
   font-size: 1.6rem;
   outline: none;
 
-  /* Muda a cor da borda ao focar o input */
   &:focus {
-    border-color: #fb8304; /* Cor da borda ao focar */
+    border-color: #fb8304;
   }
 `;

@@ -3,42 +3,62 @@ import { backgrounds } from '../../theme';
 
 // Estilo para o componente de container com barra de rolagem
 export const ScrollableContainer = styled.div`
-
-
-
-  /* Largura da barra de rolagem */
-  scrollbar-width: thin; /* Para navegadores que suportam a propriedade scrollbar-width */
+  background: 
+    linear-gradient(rgba(36, 36, 36, 0.9), #100e0e),
+    url(${backgrounds.kage}) center/cover no-repeat;
+  background-attachment: fixed;
+  scrollbar-width: thin;
+  
   &::-webkit-scrollbar {
-    width: 8px; /* Largura da barra de rolagem */
+    width: 8px;
   }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #f0f0f0;
+    border-radius: 4px;
+  }
+
   form {
-    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    input, textarea, button {
+      max-width: 40rem;
+      margin: 1rem auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    button {
+      padding: 2rem;
+      border: none;
+      border-radius: 10px;
+      background-color: #535050;
+      color: #e05000;
+      cursor: pointer;
+      font-size: 2rem;
+    }
+  }
+
+  .h3z {
     display: flex;
     justify-content: center;
-    align-items: center;
     text-align: center;
-  }
-  .h3z {
-    color: white;
-    font-family: K2D;
+    align-items: center;
+    margin: 0 auto;
+    background-color: transparent;
     font-size: 3rem;
-  }
-
-  /* Estilo para o polegar (thumb) da barra de rolagem */
-  &::-webkit-scrollbar-thumb {
-    background-color: #888; /* Cor de fundo do polegar */
-    border-radius: 4px; /* Raio das bordas do polegar */
-  }
-
-  /* Estilo para a barra de rolagem quando estiver passando o mouse sobre ela */
-  &::-webkit-scrollbar-thumb:hover {
-    background-color: #555; /* Cor de fundo do polegar ao passar o mouse */
-  }
-
-  /* Estilo para a barra de rolagem */
-  &::-webkit-scrollbar-track {
-    background-color: #f0f0f0; /* Cor de fundo da barra de rolagem */
-    border-radius: 4px; /* Raio das bordas da trilha */
+    font-family: K2D;
+    color: #fff;
   }
 `;
 
@@ -51,13 +71,25 @@ export const LastFilmsContainer = styled.div`
   font-family: 'Helvetica Neue';
   position: relative;
   background-attachment: fixed;
+
+  @media (max-width: 1024px) {
+    padding: 2rem 5rem;
+  }
+  @media (max-width: 768px) {
+    padding: 1rem 2rem;
+  }
 `;
 
 export const Container = styled.div`
   display: flex;
-  height: 600px;
-  flex-wrap: wrap; /* Permite que os cards fiquem lado a lado e quebrem a linha se necessário */
   gap: 3rem;
+  flex-wrap: wrap;
+  justify-content: center; /* Centraliza os cards horizontalmente */
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+    justify-content: center;
+  }
 `;
 
 export const TitleFilms = styled.div`
@@ -66,23 +98,30 @@ export const TitleFilms = styled.div`
   align-items: center;
   gap: 1rem;
 
-  /* Aplicar estilos específicos para a imagem .film */
   .film {
     width: 60px;
     height: 60px;
-    filter: hue-rotate(3deg) brightness(110%) saturate(100%) contrast(150%); /* Ajustar a cor da imagem para #FF5056 */
+    filter: hue-rotate(3deg) brightness(110%) saturate(100%) contrast(150%);
   }
 
-  /* Aplicar estilos específicos para o texto dentro do p */
   p {
     margin: 0;
     font-size: 4rem;
-    color: #FF5056; /* Cor do texto */
+    color: #FF5056;
   }
 
-  /* Estilizar o ícone */
   .IconLastReleases {
     font-size: 5rem;
-    color: #FFFFFF; /* Cor do ícone */
+    color: #FFFFFF;
+  }
+
+  @media (max-width: 768px) {
+    .film {
+      width: 40px;
+      height: 40px;
+    }
+    p {
+      font-size: 2rem;
+    }
   }
 `;

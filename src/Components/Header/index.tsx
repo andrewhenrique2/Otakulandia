@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { Link } from 'react-router-dom';
 import {
@@ -17,6 +17,8 @@ import {
   AnimeFilmsTab2,
   LinkDiscord,
   ScrollableContainer,
+  MobileMenuIcon,
+  MobileMenu,
 } from './HeaderStyles';
 import Logo from '../../assets/Otakulandia.png';
 import IconListFilms from '../../assets/buttonListFilms.png';
@@ -33,6 +35,30 @@ import GlobalStyles from '../../GlobalStyles';
 
 const Header = () => {
   const { user, signOut } = useContext(AuthContext);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const mobileMenuRef = useRef(null);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleClickOutside = (event) => {
+    if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
 
   return (
     <ScrollableContainer>
@@ -133,7 +159,47 @@ const Header = () => {
               )}
             </Account>
           </UserNavegation>
+
+          <MobileMenuIcon onClick={toggleMobileMenu}>
+            <HiOutlineMenu />
+          </MobileMenuIcon>
         </Container>
+
+        {isMobileMenuOpen && (
+          <MobileMenu ref={mobileMenuRef}>
+            <Link to="/" onClick={toggleMobileMenu}>
+              <FaHome style={{ marginRight: '0.5rem' }} />
+              Home
+            </Link>
+            <Link to="/search" onClick={toggleMobileMenu}>
+              <IoMdSearch style={{ marginRight: '0.5rem' }} />
+              Search
+            </Link>
+            {user && (
+              <Link to="/user" onClick={toggleMobileMenu}>
+                <FaUserCircle style={{ marginRight: '0.5rem' }} />
+                Profile
+              </Link>
+            )}
+            {user ? (
+              <StyledButton onClick={signOut}>
+                <CiLogout className='logouticon' />
+                Logout
+              </StyledButton>
+            ) : (
+              <>
+                <Link to="/login" onClick={toggleMobileMenu}>
+                  <RiUser3Line style={{ marginRight: '0.5rem' }} />
+                  Entrar
+                </Link>
+                <Link to="/register" onClick={toggleMobileMenu}>
+                  <StyledIcon />
+                  Cadastre-se
+                </Link>
+              </>
+            )}
+          </MobileMenu>
+        )}
       </HeaderContainer>
     </ScrollableContainer>
   );
