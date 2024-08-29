@@ -103,6 +103,7 @@ export const Account = styled.div`
 
   @media (max-width: 768px) {
     gap: 1rem; /* Reduz o espaço entre os elementos em telas menores */
+    
   }
 `;
 
@@ -327,6 +328,16 @@ export const PopUpWindowList = styled.div`
     height: 12rem;
   }
 
+  .box {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+      width: 100%;
+    }
+  }
+
   .h3Films {
     width: 100%;
     max-width: 80%;
@@ -349,6 +360,7 @@ export const PopUpWindowList = styled.div`
   .titleListFilms-notes {
     color: #ef314c;
     height: 12rem;
+    width: 50px;
   }
 
   .IconAnimeList, .IconFilmList {
@@ -371,8 +383,14 @@ export const PopUpWindowList = styled.div`
   }
 
   @media (max-width: 768px) {
+    .box {
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+    }
     font-size: 1.6rem; /* Ajuste do tamanho da fonte em telas menores */
     h2, h3 {
+      justify-content: center;
       margin: 0.5rem; /* Ajuste do margin em telas menores */
     }
   }

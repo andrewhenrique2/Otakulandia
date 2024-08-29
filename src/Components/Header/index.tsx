@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { Link } from 'react-router-dom';
 import {
@@ -35,30 +35,44 @@ import GlobalStyles from '../../GlobalStyles';
 
 const Header = () => {
   const { user, signOut } = useContext(AuthContext);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAnimeFilmsOpen, setIsAnimeFilmsOpen] = useState(false);
+
   const mobileMenuRef = useRef(null);
+  const menuRef = useRef(null);
+  const animeFilmsRef = useRef(null);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const toggleAnimeFilms = () => {
+    setIsAnimeFilmsOpen(!isAnimeFilmsOpen);
   };
 
   const handleClickOutside = (event) => {
     if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
       setIsMobileMenuOpen(false);
     }
+    if (menuRef.current && !menuRef.current.contains(event.target)) {
+      setIsMenuOpen(false);
+    }
+    if (animeFilmsRef.current && !animeFilmsRef.current.contains(event.target)) {
+      setIsAnimeFilmsOpen(false);
+    }
   };
 
   useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside);
-    }
-
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isMobileMenuOpen]);
+  }, []);
 
   return (
     <ScrollableContainer>
@@ -75,34 +89,39 @@ const Header = () => {
             </LinkDiscord>
           </Link>
 
-          <AnimeFilmsTab>
+          <AnimeFilmsTab onClick={toggleMenu} ref={menuRef}>
             Menu <HiOutlineMenu className="menuIcon" />
-            <PopUpWindow className="PopUpWindow">
+            <PopUpWindow className={isMenuOpen ? "PopUpWindow show" : "PopUpWindow"}>
               <PopUpWindowList>
+                <div className="box">
                 <h2 className="titleListAnimes-donate">
                   <img className="IconAnimeList" src={Donate} alt="" />
                   Doações
                 </h2>
-                <h3>Ajude-nos a manter o <br />site, Faca sua doação.</h3>
+                <h3>Ajude-nos a manter o <br />site, Faça sua doação.</h3>
+                </div>
               </PopUpWindowList>
 
               <PopUpWindowList>
+              <div className="box">
                 <h2 className="titleListFilms-notes">
                   <img className="IconFilmList" src={notepad} alt="" />
                   Notes
                 </h2>
-                <h3 className="h3Films"> correção de bugs, atualizações, novidades.</h3>
+                <h3 className="h3Films">Correção de bugs, atualizações, novidades.</h3>
+                </div>
+
               </PopUpWindowList>
             </PopUpWindow>
           </AnimeFilmsTab>
 
-          <AnimeFilmsTab2>
+          <AnimeFilmsTab2 onClick={toggleAnimeFilms} ref={animeFilmsRef}>
             Animes/Filmes <FaCaretDown />
-            <PopUpWindow className="PopUpWindow">
+            <PopUpWindow className={isAnimeFilmsOpen ? "PopUpWindow show" : "PopUpWindow"}>
               <PopUpWindowList>
                 <h2 className="titleListAnimes">
                   <img className="IconAnimeList" src={IconListAnime} alt="" />
-                  LISTA DE ANIMES
+                  LISTA DE ANIME
                 </h2>
                 <h3>Animes legendados e dublados</h3>
               </PopUpWindowList>
@@ -111,7 +130,7 @@ const Header = () => {
                   <img className="IconFilmList" src={IconListFilms} alt="" />
                   LISTA DE FILMES
                 </h2>
-                <h3> Filmes legendados e dublados</h3>
+                <h3>Filmes legendados e dublados</h3>
               </PopUpWindowList>
             </PopUpWindow>
           </AnimeFilmsTab2>
